@@ -10,10 +10,12 @@ import Warning from './components/warning.styl.js';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {isError: false, data: {}};
+    this.state = {isError: false, data: {}, isLoading: true};
   }
 
   refreshData() {
+    this.setState({isLoading: true});
+
     getData()
       .then(res => {
         if (res.error) {
@@ -34,9 +36,11 @@ class App extends Component {
           }
         }
       })
+      .then(() => this.setState({isLoading: false,}))
       .catch(() => {
         this.setState({
           isError: true,
+          isLoading: false,
         })
       });
   }
@@ -49,10 +53,14 @@ class App extends Component {
     return (
       <AppHolder>
         <AppHeader/>
-        {this.state.isError ? <Error data={this.state.data}/> : <GaugeMeter data={this.state.data}/> }
-        <ReloadButton onClick={this.refreshData.bind(this)}>One more time!</ReloadButton>
-        {!this.state.isError && !this.state.data.unit &&
-          <Warning>Looks like you will win something in the magical country where currency is unicorns</Warning>}
+        {!this.state.isLoading ?
+          <div>
+            {this.state.isError ? <Error data={this.state.data}/> : <GaugeMeter data={this.state.data}/> }
+            <ReloadButton onClick={this.refreshData.bind(this)}>One more time!</ReloadButton>
+            {!this.state.isError && !this.state.data.unit &&
+              <Warning>Looks like you will win something in the magical country where currency is unicorns</Warning>}
+          </div> :
+          <div>Loading...</div>}
       </AppHolder>
     );
   }
