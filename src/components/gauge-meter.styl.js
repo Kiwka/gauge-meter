@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const GaugeMeterHolder = styled.div`
   width: 450px;
-  height: 204px;
+  height: 224px;
   margin: 0 auto;
 
   .meter {
