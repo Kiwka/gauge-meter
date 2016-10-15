@@ -3,7 +3,7 @@
 }
 
 .holder {
-  width: 408px;
+  width: 428px;
   height: 204px;
   margin: 0 auto;
 }
@@ -12,4 +12,10 @@
   transform: rotateX(180deg);
   width: 100%;
   height: 100%;
+}
+
+.needle {
+  transform: rotate(0deg);
+  transition: all 4s ease-in-out;
+  transform-origin: 100% 0%;
 }

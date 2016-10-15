@@ -19,10 +19,17 @@ class App extends Component {
             isError: true,
           })
         } else {
-          this.setState({
-            data: res,
-            isError: false,
-          })
+          if (res.value > res.max || res.value < res.min || res.min > res.max) {
+            this.setState({
+              isError: true,
+              data: res,
+            })
+          } else {
+            this.setState({
+              data: res,
+              isError: false,
+            })
+          }
         }
       })
       .catch(() => {
@@ -36,7 +43,7 @@ class App extends Component {
     return (
       <div className="App">
         <AppHeader/>
-        {this.state.isError ? <Error /> : <GaugeMeter data={this.state.data}/> }
+        {this.state.isError ? <Error data={this.state.data}/> : <GaugeMeter data={this.state.data}/> }
       </div>
     );
   }
