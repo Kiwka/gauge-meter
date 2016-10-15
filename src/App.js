@@ -6,6 +6,7 @@ import Error from './components/error.jsx';
 import GaugeMeter from './components/gauge-meter.jsx';
 import ReloadButton from './components/reload-button.styl.js';
 import Warning from './components/warning.styl.js';
+import Loader from './components/loader.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -59,8 +60,7 @@ class App extends Component {
             <ReloadButton onClick={this.refreshData.bind(this)}>One more time!</ReloadButton>
             {!this.state.isError && !this.state.data.unit &&
               <Warning>Looks like you will win something in the magical country where currency is unicorns</Warning>}
-          </div> :
-          <div>Loading...</div>}
+          </div> : <Loader />}
       </AppHolder>
     );
   }
