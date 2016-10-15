@@ -22,6 +22,7 @@ class App extends Component {
         if (res.error) {
           this.setState({
             isError: true,
+            data: {},
           })
         } else {
           if (res.value > res.max || res.value < res.min || res.min > res.max) {
