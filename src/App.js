@@ -4,6 +4,7 @@ import getData from './stores/gauge-store.js';
 import AppHeader from './components/header.jsx';
 import Error from './components/error.jsx';
 import GaugeMeter from './components/gauge-meter.jsx';
+import ReloadButton from './components/reload-button.styl.js';
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
     this.state = {isError: false, data: {}};
   }
 
-  componentDidMount() {
+  refreshData() {
     getData()
       .then(res => {
         if (res.error) {
@@ -39,11 +40,16 @@ class App extends Component {
       });
   }
 
+  componentDidMount() {
+    this.refreshData();
+  }
+
   render() {
     return (
       <AppHolder>
         <AppHeader/>
         {this.state.isError ? <Error data={this.state.data}/> : <GaugeMeter data={this.state.data}/> }
+        <ReloadButton onClick={this.refreshData.bind(this)}>One more time!</ReloadButton>
       </AppHolder>
     );
   }
