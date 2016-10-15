@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import AppHolder from './App.styl.js';
 import getData from './stores/gauge-store.js';
 import AppHeader from './components/header.jsx';
 import Error from './components/error.jsx';
@@ -41,10 +41,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <AppHolder>
         <AppHeader/>
         {this.state.isError ? <Error data={this.state.data}/> : <GaugeMeter data={this.state.data}/> }
-      </div>
+      </AppHolder>
     );
   }
 }

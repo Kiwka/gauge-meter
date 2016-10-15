@@ -9,6 +9,7 @@
     "currency-symbol-map": "^3.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "styled-components": "^1.0.5",
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {

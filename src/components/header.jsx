@@ -1,7 +1,8 @@
 import React from 'react';
+import Header from './header.styl.js';
 
-const AppHeader = () => <header>
+const AppHeader = () => <Header>
   How much money will you earn today?
-</header>;
+</Header>;
 
 export default AppHeader;
